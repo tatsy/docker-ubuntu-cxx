@@ -1,9 +1,9 @@
-dockerfile
+docker-ubuntu-cxx
 ===
 
-> Docker image for C++ build environment
+[![Build Status](https://travis-ci.org/tatsy/docker-ubuntu-cxx.svg?branch=master)](https://travis-ci.org/tatsy/docker-ubuntu-cxx)
 
-## Environment
+> Docker image for C++ build environment
 
 ## Environment
 

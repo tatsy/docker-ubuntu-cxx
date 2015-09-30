@@ -1,8 +1,10 @@
 language: cpp
 sudo: required
+services:
+  - docker
 
 script:
-    docker build -t ubuntu-cxx .
+    - docker build -t ubuntu-cxx .
 
 notifications:
   email:
