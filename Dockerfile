@@ -14,7 +14,7 @@ RUN \
   apt-get -y upgrade && \
   apt-get install -y build-essential clang-3.5 && \
   apt-get install -y software-properties-common && \
-  apt-get install -y byobu curl git htop man unzip vim wget && \
+  apt-get install -y byobu curl git subversion htop man unzip vim wget cmake && \
   rm -rf /var/lib/apt/lists/*
 
 # Set environment variables.
@@ -39,8 +39,8 @@ RUN apt-add-repository -y "deb http://llvm.org/apt/trusty llvm-toolchain-trusty-
 RUN wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key|sudo apt-key add -
 RUN apt-get update -qq
 RUN apt-get install -qq clang-3.7 llvm-3.7
-RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.7
-RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.7
+RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.7 90
+RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.7 90
 
 # Install OpenMP for LLVM
 RUN svn co http://llvm.org/svn/llvm-project/openmp/trunk openmp

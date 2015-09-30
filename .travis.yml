@@ -3,8 +3,17 @@ sudo: required
 services:
   - docker
 
+install:
+    - docker build --quiet=true --tag=ubuntu-cxx .
+    - docker images
+
 script:
-    - docker build -t ubuntu-cxx .
+    - docker run ubuntu-cxx cat /etc/lsb-release
+    - docker run ubuntu-cxx gcc --version
+    - docker run ubuntu-cxx g++ --version
+    - docker run ubuntu-cxx clang --version
+    - docker run ubuntu-cxx clang++ --version
+    - docker run ubuntu-cxx cmake --version
 
 notifications:
   email:
