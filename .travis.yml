@@ -1,0 +1,11 @@
+language: cpp
+sudo: required
+
+script:
+    docker build -t ubuntu-cxx .
+
+notifications:
+  email:
+    recipients: tatsy.mail@gmail.com
+    on_success: change
+    on_failure: always
