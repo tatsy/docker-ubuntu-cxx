@@ -3,17 +3,24 @@ sudo: required
 services:
   - docker
 
+env:
+  - DOCKER_TAG=tatsy/ubuntu-cxx:latest
+
 install:
-    - docker build --quiet=true --tag=ubuntu-cxx .
-    - docker images
+  - docker build --quiet=true --tag=$DOCKER_TAG .
+  - docker images
 
 script:
-    - docker run ubuntu-cxx cat /etc/lsb-release
-    - docker run ubuntu-cxx gcc --version
-    - docker run ubuntu-cxx g++ --version
-    - docker run ubuntu-cxx clang --version
-    - docker run ubuntu-cxx clang++ --version
-    - docker run ubuntu-cxx cmake --version
+  - docker run $DOCKER_TAG cat /etc/lsb-release
+  - docker run $DOCKER_TAG gcc --version
+  - docker run $DOCKER_TAG g++ --version
+  - docker run $DOCKER_TAG clang --version
+  - docker run $DOCKER_TAG clang++ --version
+  - docker run $DOCKER_TAG cmake --version
+
+after_success:
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker push tatsy/ubuntu-cxx
 
 notifications:
   email:

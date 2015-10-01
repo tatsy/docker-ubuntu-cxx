@@ -14,7 +14,9 @@ RUN \
   apt-get -y upgrade && \
   apt-get install -y build-essential clang-3.5 && \
   apt-get install -y software-properties-common && \
-  apt-get install -y byobu curl git subversion htop man unzip vim wget cmake && \
+  apt-get install -y byobu curl git htop man unzip vim wget
+RUN \
+  apt-get install -y subversion cmake qt5-default && \
   rm -rf /var/lib/apt/lists/*
 
 # Set environment variables.
@@ -67,9 +69,11 @@ RUN \
   cmake --version
 
 # Show environments
+RUN echo "--- Build Enviroment ---"
 RUN cat /etc/lsb-release
-RUN gcc --version
-RUN g++ --version
-RUN clang --version
-RUN clang++ --version
-RUN cmake --version
+RUN gcc --version | grep gcc
+RUN g++ --version | grep g++
+RUN clang --version | grep version
+RUN clang++ --version | grep version
+RUN cmake --version | grep version
+RUN echo "------------------------"
