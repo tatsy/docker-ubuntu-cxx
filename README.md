@@ -8,9 +8,18 @@ docker-ubuntu-cxx
 ## Environment
 
 * Ubuntu 14.04 LTS
-* gcc/g++ version 4.9
+* GCC/G++ version 4.9
 * LLVM version 3.7
 * CMake version 3.2.2
+* Qt 5.2.1
+
+## Usage
+
+The built docker image is hosted at Docker Hub, so you can pull it by the command below.
+
+```shell
+$ docker pull tatsy/ubuntu-cxx
+```
 
 ## License
 
