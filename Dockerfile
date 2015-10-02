@@ -35,6 +35,11 @@ RUN apt-get install -qq gcc-4.9 g++-4.9
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 90
 RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 90
 
+# Install LCOV
+RUN git clone https://github.com/linux-test-project/lcov.git
+RUN make -C lcov install
+RUN gem install coveralls-lcov
+
 # Install LLVM v.3.7
 RUN apt-add-repository -y "deb http://llvm.org/apt/trusty llvm-toolchain-trusty main"
 RUN apt-add-repository -y "deb http://llvm.org/apt/trusty llvm-toolchain-trusty-3.7 main"
@@ -73,6 +78,7 @@ RUN echo "--- Build Enviroment ---"
 RUN cat /etc/lsb-release
 RUN gcc --version | grep gcc
 RUN g++ --version | grep g++
+RUN lcov --version | grep version
 RUN clang --version | grep version
 RUN clang++ --version | grep version
 RUN cmake --version | grep version
