@@ -49,7 +49,7 @@ RUN apt-get update -qq
 RUN apt-get install -qq clang-3.7 llvm-3.7
 RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.7 90
 RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.7 90
-RUN ln -s /usr/bin/llvm-cov-3.7 /usr/bin/llvm-cov
+RUN ln -fs /usr/bin/llvm-cov-3.7 /usr/bin/llvm-cov
 
 # Install OpenMP for LLVM
 RUN svn co http://llvm.org/svn/llvm-project/openmp/trunk openmp
