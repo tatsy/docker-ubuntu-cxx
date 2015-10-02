@@ -38,6 +38,7 @@ RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 90
 # Install LCOV
 RUN git clone https://github.com/linux-test-project/lcov.git
 RUN make -C lcov install
+RUN apt-get install -y ruby
 RUN gem install coveralls-lcov
 
 # Install LLVM v.3.7
