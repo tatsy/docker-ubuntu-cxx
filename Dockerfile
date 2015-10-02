@@ -34,6 +34,7 @@ RUN apt-get update -qq
 RUN apt-get install -qq gcc-4.9 g++-4.9
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 90
 RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 90
+RUN update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-4.9 90
 
 # Install LCOV
 RUN git clone https://github.com/linux-test-project/lcov.git
