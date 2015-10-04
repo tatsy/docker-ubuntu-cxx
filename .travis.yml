@@ -6,6 +6,10 @@ services:
 env:
   - DOCKER_TAG=tatsy/ubuntu-cxx:latest
 
+before_install:
+  - mkdir root/
+  - cp ~/.bashrc root/.bashrc
+
 install:
   - docker build --quiet=true --tag=$DOCKER_TAG .
   - docker images

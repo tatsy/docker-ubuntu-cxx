@@ -19,6 +19,9 @@ RUN \
   apt-get install -y subversion cmake qt5-default && \
   rm -rf /var/lib/apt/lists/*
 
+# Add files
+ADD root/.bashrc /root/.bashrc
+
 # Set environment variables.
 ENV HOME /root
 
