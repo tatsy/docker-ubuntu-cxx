@@ -4,14 +4,15 @@ services:
   - docker
 
 env:
-  - DOCKER_TAG=tatsy/ubuntu-cxx:latest
+  - DOCKER_TAG=tatsy/ubuntu-cxx
 
 before_install:
   - mkdir root/
   - cp ~/.bashrc root/.bashrc
 
 install:
-  - docker build --quiet=true --tag=$DOCKER_TAG .
+  - docker build --quiet=true --tag=$DOCKER_TAG:latest .
+  - docker build --quiet=true --tag=$DOCKER_TAG:opencv opencv
   - docker images
 
 script:
