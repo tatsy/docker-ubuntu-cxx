@@ -11,8 +11,8 @@ before_install:
   - cp ~/.bashrc root/.bashrc
 
 install:
-  - docker build --quiet=true --tag=$DOCKER_TAG:latest .
-  - docker build --quiet=true --tag=$DOCKER_TAG:opencv opencv
+  - docker build --tag=$DOCKER_TAG:latest .
+  - docker build --tag=$DOCKER_TAG:opencv opencv
   - docker images
 
 script:

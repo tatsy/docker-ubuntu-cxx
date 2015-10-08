@@ -10,13 +10,13 @@ FROM ubuntu:14.04
 # Install
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
-  apt-get update && \
-  apt-get -y upgrade && \
-  apt-get install -y build-essential clang-3.5 && \
-  apt-get install -y software-properties-common && \
-  apt-get install -y byobu curl git htop man unzip vim wget
+  apt-get update -qq && \
+  apt-get upgrade -qq && \
+  apt-get install -qq build-essential clang-3.5 && \
+  apt-get install -qq software-properties-common && \
+  apt-get install -qq byobu curl git htop man unzip vim wget
 RUN \
-  apt-get install -y subversion cmake qt5-default && \
+  apt-get install -qq subversion cmake qt5-default && \
   rm -rf /var/lib/apt/lists/*
 
 # Add files
