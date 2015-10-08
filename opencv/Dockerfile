@@ -5,7 +5,7 @@
 #
 
 # Base image
-FROM ubuntu-cxx:latest
+FROM tatsy/ubuntu-cxx:default
 
 # Install OpenCV
 #!/bin/sh
@@ -14,6 +14,9 @@ FROM ubuntu-cxx:latest
 ## Install dependencies
 #
 RUN \
+  apt-add-repository multiverse && \
+  apt-get update -qq && \
+  apt-get upgrade -qq && \
   apt-get -y install libopencv-dev libgtk2.0-dev pkg-config \
              python-dev python-numpy libdc1394-22 libdc1394-22-dev \
              libjpeg-dev libpng12-dev libtiff4-dev libjasper-dev libavcodec-dev \
@@ -25,7 +28,7 @@ RUN \
 #
 ## Download OpenCV source
 #
-RUN wget https://github.com/Itseez/opencv/archive/3.0.0.zip -O opencv-3.0.0
+RUN wget https://github.com/Itseez/opencv/archive/3.0.0.zip -O opencv-3.0.0.zip
 RUN unzip -qq opencv-3.0.0.zip
 
 #
