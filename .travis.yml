@@ -4,23 +4,24 @@ services:
   - docker
 
 env:
-  - DOCKER_TAG=tatsy/ubuntu-cxx:latest
+  - DOCKER_TAG=tatsy/ubuntu-cxx
 
 before_install:
   - mkdir root/
   - cp ~/.bashrc root/.bashrc
 
 install:
-  - docker build --quiet=true --tag=$DOCKER_TAG .
+  - docker build --quiet=true --tag=$DOCKER_TAG:default .
+  - docker build --tag=$DOCKER_TAG:opencv opencv
   - docker images
 
 script:
-  - docker run $DOCKER_TAG cat /etc/lsb-release
-  - docker run $DOCKER_TAG gcc --version
-  - docker run $DOCKER_TAG g++ --version
-  - docker run $DOCKER_TAG clang --version
-  - docker run $DOCKER_TAG clang++ --version
-  - docker run $DOCKER_TAG cmake --version
+  - docker run $DOCKER_TAG:default cat /etc/lsb-release
+  - docker run $DOCKER_TAG:default gcc --version
+  - docker run $DOCKER_TAG:default g++ --version
+  - docker run $DOCKER_TAG:default clang --version
+  - docker run $DOCKER_TAG:default clang++ --version
+  - docker run $DOCKER_TAG:default cmake --version
 
 after_success:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"

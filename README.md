@@ -8,17 +8,20 @@ docker-ubuntu-cxx
 ## Environment
 
 * Ubuntu 14.04 LTS
-* GCC/G++ version 4.9
-* LLVM version 3.7
-* CMake version 3.2.2
+* GCC/G++ 4.9.1
+* LLVM 3.7 (with OpenMP)
+* CMake 3.2.2
 * Qt 5.2.1
+* Google Test 1.7.0
+* OpenCV 3.0.0
 
 ## Usage
 
 The built docker image is hosted at Docker Hub, so you can pull it by the command below.
 
 ```shell
-$ docker pull tatsy/ubuntu-cxx
+$ docker pull tatsy/ubuntu-cxx:default # without OpenCV
+$ docker pull tatsy/ubuntu-cxx:opencv  # with OpenCV
 ```
 
 ## License
