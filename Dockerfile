@@ -94,6 +94,11 @@ ENV GTEST_LIBRARY /usr/local/lib/libgtest.a
 ENV GTEST_MAIN_LIBRARY /usr/local/lib/libgtest_main.a
 ENV GTEST_INCLUDE_DIRS /usr/include
 
+# Clean working directory
+RUN rm -rf openmp
+RUN rm -rf CMake
+RUN rm -rf /usr/src/gtest
+
 # Show environments
 RUN echo "--- Build Enviroment ---"
 RUN cat /etc/lsb-release

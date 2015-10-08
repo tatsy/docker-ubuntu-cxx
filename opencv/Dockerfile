@@ -42,3 +42,9 @@ RUN \
   make -j4 && \
   make install && \
   ldconfig
+
+#
+## Clear working directory
+#
+RUN rm -rf opencv-3.0.0
+RUN rm opencv-3.0.0.zip
