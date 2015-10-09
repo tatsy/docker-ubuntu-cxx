@@ -11,8 +11,8 @@ docker-ubuntu-cxx
 * GCC/G++ 4.9.1
 * LLVM 3.7 (with OpenMP)
 * CMake 3.2.2
-* Qt 5.2.1
 * Google Test 1.7.0
+* Qt 5.4.1
 * OpenCV 3.0.0
 
 ## Usage
