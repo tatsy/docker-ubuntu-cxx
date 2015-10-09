@@ -14,9 +14,8 @@ RUN \
   apt-get upgrade -qq && \
   apt-get install -qq build-essential clang-3.5 && \
   apt-get install -qq software-properties-common && \
-  apt-get install -qq byobu curl git htop man unzip vim wget
-RUN \
-  apt-get install -qq subversion cmake qt5-default && \
+  apt-get install -qq byobu curl git htop man unzip vim wget && \
+  apt-get install -qq subversion cmake && \
   rm -rf /var/lib/apt/lists/*
 
 # Add files
@@ -93,6 +92,12 @@ RUN \
 ENV GTEST_LIBRARY /usr/local/lib/libgtest.a
 ENV GTEST_MAIN_LIBRARY /usr/local/lib/libgtest_main.a
 ENV GTEST_INCLUDE_DIRS /usr/include
+
+# Install Qt 5.4
+RUN apt-add-repository ppa:beineri/opt-qt541-trusty
+RUN apt-get update -qq
+RUN apt-get install -qq qt54base qt54declarative qt54location qt54tools
+ENV CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:/opt/qt54
 
 # Clean working directory
 RUN rm -rf openmp

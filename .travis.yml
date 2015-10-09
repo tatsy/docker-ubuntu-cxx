@@ -24,8 +24,8 @@ script:
   - docker run $DOCKER_TAG:default cmake --version
 
 after_success:
-  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker push tatsy/ubuntu-cxx
+  - if [ $BRANCH_NAME == "master" ]; then docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; fi
+  - if [ $BRANCH_NAME == "master" ]; then docker push tatsy/ubuntu-cxx; fi
 
 notifications:
   email:
