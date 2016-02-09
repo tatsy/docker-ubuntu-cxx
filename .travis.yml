@@ -1,5 +1,7 @@
 language: cpp
 sudo: required
+dist: trusty
+group: stable
 services:
   - docker
 
