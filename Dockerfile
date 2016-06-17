@@ -5,21 +5,18 @@
 #
 
 # OS image
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 # Install
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update -qq && \
   apt-get upgrade -qq && \
-  apt-get install -qq build-essential clang-3.5 && \
+  apt-get install -qq build-essential clang && \
   apt-get install -qq software-properties-common && \
   apt-get install -qq byobu curl git htop man unzip vim wget && \
   apt-get install -qq subversion cmake && \
   rm -rf /var/lib/apt/lists/*
-
-# Add files
-ADD root/.bashrc /root/.bashrc
 
 # Set environment variables.
 ENV HOME /root
@@ -44,16 +41,6 @@ RUN make -C lcov install
 RUN apt-get install -y ruby
 RUN gem install coveralls-lcov
 
-# Install LLVM v.3.7
-RUN apt-add-repository -y "deb http://llvm.org/apt/trusty llvm-toolchain-trusty main"
-RUN apt-add-repository -y "deb http://llvm.org/apt/trusty llvm-toolchain-trusty-3.7 main"
-RUN wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key|sudo apt-key add -
-RUN apt-get update -qq
-RUN apt-get install -qq clang-3.7 llvm-3.7
-RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.7 90
-RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.7 90
-RUN ln -fs /usr/bin/llvm-cov-3.7 /usr/bin/llvm-cov
-
 # Install OpenMP for LLVM
 RUN svn co http://llvm.org/svn/llvm-project/openmp/trunk openmp
 RUN \
@@ -65,8 +52,8 @@ RUN \
   make install && \
   cd -
 
-# Update CMake to v3.3.2
-RUN git clone --depth 1 -b v3.3.2 https://github.com/Kitware/CMake.git
+# Update CMake to v3.5.1
+RUN git clone --depth 1 -b v3.5.1 https://github.com/Kitware/CMake.git
 RUN \
   cd CMake && \
   mkdir build && \
@@ -77,6 +64,9 @@ RUN \
   ldconfig && \
   cd ../.. && \
   cmake --version
+
+# Install Boost
+RUN apt-get install -qq libboost-all-dev
 
 # Install Google Test
 RUN git clone --depth=1 -b release-1.7.0 https://github.com/google/googletest.git /usr/src/gtest
@@ -93,18 +83,16 @@ ENV GTEST_LIBRARY /usr/local/lib/libgtest.a
 ENV GTEST_MAIN_LIBRARY /usr/local/lib/libgtest_main.a
 ENV GTEST_INCLUDE_DIRS /usr/include
 
-# Install Boost
-RUN apt-get install -qq libboost-all-dev
-
 # Install Qt 5.4
-RUN apt-add-repository ppa:beineri/opt-qt542-trusty
+RUN apt-add-repository ppa:beineri/opt-qt56-xenial
 RUN apt-get update -qq
-RUN apt-get install -qq qt54base qt54declarative qt54location qt54tools
-ENV CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:/opt/qt54
+RUN apt-get install -qq qt56base qt56declarative qt56location qt56tools
+ENV CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:/opt/qt56
 
 # Clean working directory
 RUN rm -rf openmp
 RUN rm -rf CMake
+RUN rm -rf lcov
 RUN rm -rf /usr/src/gtest
 
 # Show environments

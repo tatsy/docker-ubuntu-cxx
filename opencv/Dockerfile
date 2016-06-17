@@ -28,14 +28,14 @@ RUN \
 #
 ## Download OpenCV source
 #
-RUN wget https://github.com/Itseez/opencv/archive/3.0.0.zip -O opencv-3.0.0.zip
-RUN unzip -qq opencv-3.0.0.zip
+RUN wget https://github.com/Itseez/opencv/archive/3.1.0.zip -O opencv-3.1.0.zip
+RUN unzip -qq opencv-3.1.0.zip
 
 #
 ## Build OpenCV
 #
 RUN \
-  cd opencv-3.0.0 && \
+  cd opencv-3.1.0 && \
   mkdir build && \
   cd build && \
   cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_TBB=ON -D WITH_V4L=ON -D WITH_OPENGL=ON .. && \
@@ -46,5 +46,5 @@ RUN \
 #
 ## Clear working directory
 #
-RUN rm -rf opencv-3.0.0
-RUN rm opencv-3.0.0.zip
+RUN rm -rf opencv-3.1.0
+RUN rm opencv-3.1.0.zip
