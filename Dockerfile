@@ -84,7 +84,7 @@ ENV GTEST_MAIN_LIBRARY /usr/local/lib/libgtest_main.a
 ENV GTEST_INCLUDE_DIRS /usr/include
 
 # Install Qt 5.4
-RUN apt-add-repository ppa:beineri/opt-qt56-xenial
+RUN apt-add-repository ppa:beineri/opt-qt561-xenial
 RUN apt-get update -qq
 RUN apt-get install -qq qt56base qt56declarative qt56location qt56tools
 ENV CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:/opt/qt56
