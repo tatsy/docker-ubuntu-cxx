@@ -19,9 +19,9 @@ RUN \
   apt-get upgrade -qq && \
   apt-get -y install libopencv-dev libgtk2.0-dev pkg-config \
              python-dev python-numpy libdc1394-22 libdc1394-22-dev \
-             libjpeg-dev libpng12-dev libtiff4-dev libjasper-dev libavcodec-dev \
-             libavformat-dev libswscale-dev libxine-dev libgstreamer0.10-dev \
-             libgstreamer-plugins-base0.10-dev libv4l-dev libtbb-dev libqt4-dev \
+             libjpeg-dev libpng12-dev libtiff5-dev libjasper-dev libavcodec-dev \
+             libavformat-dev libswscale-dev libxine2-dev libgstreamer0.10-dev \
+             libgstreamer-plugins-base0.10-dev libv4l-dev libtbb-dev qtbase5-dev \
              libfaac-dev libmp3lame-dev libopencore-amrnb-dev libopencore-amrwb-dev \
              libtheora-dev libvorbis-dev libxvidcore-dev x264 v4l-utils unzip
 
@@ -38,7 +38,7 @@ RUN \
   cd opencv-3.1.0 && \
   mkdir build && \
   cd build && \
-  cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_TBB=ON -D WITH_V4L=ON -D WITH_OPENGL=ON .. && \
+  cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_IPP=OFF -D WITH_TBB=ON -D WITH_V4L=ON -D WITH_OPENGL=ON .. && \
   make -j4 && \
   make install && \
   ldconfig
