@@ -66,7 +66,13 @@ RUN \
   cmake --version
 
 # Install Boost
-RUN apt-get install -qq libboost-all-dev
+RUN wget https://sourceforge.net/projects/boost/files/boost/1.61.0/boost_1_61_0.tar.gz/download
+RUN tar zxf download
+RUN \
+  cd boost_1_61_0 && \
+  ./bootstrap.sh && \
+  ./b2 cxxflags=-fPIC --libdir=/usr/lib/x86_64-linux-gnu/ --includedir=/usr/include/ -j2 install && \
+  cd /
 
 # Install Google Test
 RUN git clone --depth=1 -b release-1.7.0 https://github.com/google/googletest.git /usr/src/gtest
