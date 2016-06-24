@@ -6,8 +6,7 @@ services:
   - docker
 
 env:
-  - DOCKER_TAG=tatsy/ubuntu-cxx
-  - TRAVIS_TIMEOUT=30
+  - DOCKER_TAG=tatsy/ubuntu-cxx TRAVIS_TIMEOUT=30
 
 before_install:
   - mkdir root/
