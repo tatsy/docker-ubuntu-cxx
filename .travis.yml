@@ -7,14 +7,15 @@ services:
 
 env:
   - DOCKER_TAG=tatsy/ubuntu-cxx
+  - TRAVIS_TIMEOUT=30
 
 before_install:
   - mkdir root/
   - cp ~/.bashrc root/.bashrc
 
 install:
-  - travis_wait 60 docker build --quiet=true --tag=$DOCKER_TAG:default .
-  - travis_wait 60 docker build --tag=$DOCKER_TAG:opencv opencv
+  - docker build --quiet=true --tag=$DOCKER_TAG:default .
+  - docker build --tag=$DOCKER_TAG:opencv opencv
   - docker images
 
 script:
