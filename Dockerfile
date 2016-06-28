@@ -72,7 +72,7 @@ RUN \
   mkdir build && \
   cd build && \
   cmake .. && \
-  cmake --build . && \
+  make -j4 && \
   mkdir -p /usr/local/lib && \
   mkdir -p /usr/include && \
   mv libg* /usr/local/lib && \
