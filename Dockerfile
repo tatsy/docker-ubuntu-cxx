@@ -69,12 +69,14 @@ RUN \
 RUN git clone --depth=1 -b release-1.7.0 https://github.com/google/googletest.git /usr/src/gtest
 RUN \
   cd /usr/src/gtest && \
-  cmake . && \
-  cmake --build . && \
+  mkdir build && \
+  cd build && \
+  cmake .. && \
+  make -j4 && \
   mkdir -p /usr/local/lib && \
   mkdir -p /usr/include && \
   mv libg* /usr/local/lib && \
-  mv include/* /usr/include && \
+  mv ../include/* /usr/include && \
   cd /
 ENV GTEST_LIBRARY /usr/local/lib/libgtest.a
 ENV GTEST_MAIN_LIBRARY /usr/local/lib/libgtest_main.a
