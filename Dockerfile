@@ -69,7 +69,9 @@ RUN \
 RUN git clone --depth=1 -b release-1.7.0 https://github.com/google/googletest.git /usr/src/gtest
 RUN \
   cd /usr/src/gtest && \
-  cmake . && \
+  mkdir build && \
+  cd build && \
+  cmake .. && \
   cmake --build . && \
   mkdir -p /usr/local/lib && \
   mkdir -p /usr/include && \
