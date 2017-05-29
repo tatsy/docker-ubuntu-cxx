@@ -65,11 +65,9 @@ RUN \
   cd ../.. && \
   cmake --version
 
-# Install Qt 5.6
-RUN apt-add-repository ppa:beineri/opt-qt561-xenial
-RUN apt-get update -qq
-RUN apt-get install -qq qt56base qt56declarative qt56location qt56tools
-ENV CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:/opt/qt56
+# Install Qt 5
+RUN apt-get install -qq qt5-default
+ENV CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:/opt/qt5
 
 # Clean working directory
 RUN rm -rf openmp
