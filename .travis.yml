@@ -13,8 +13,8 @@ before_install:
   - cp ~/.bashrc root/.bashrc
 
 install:
-  - docker build --quiet=true --tag=$DOCKER_TAG:default .
-  - docker build --tag=$DOCKER_TAG:opencv opencv
+  - travis_wait 30 docker build --quiet=true --tag=$DOCKER_TAG:default .
+  - travis_wait 30 docker build --tag=$DOCKER_TAG:opencv opencv
   - docker images
 
 script:
