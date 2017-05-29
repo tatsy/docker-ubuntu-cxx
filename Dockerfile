@@ -65,7 +65,7 @@ RUN \
   cd ../.. && \
   cmake --version
 
-# Install Qt 5.6
+# Install Qt 5
 RUN apt-get install -qq qt5-default
 ENV CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:/opt/qt5
 
